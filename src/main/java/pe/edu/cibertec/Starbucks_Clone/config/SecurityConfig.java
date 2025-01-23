@@ -1,2 +1,4 @@
-package pe.edu.cibertec.Starbucks_Clone.config;public class SecurityConfig {
+package pe.edu.cibertec.Starbucks_Clone.config;
+
+public class SecurityConfig {
 }

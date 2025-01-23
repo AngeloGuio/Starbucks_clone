@@ -1,2 +1,4 @@
-package pe.edu.cibertec.Starbucks_Clone.controller;public class LoginController {
+package pe.edu.cibertec.Starbucks_Clone.controller;
+
+public class LoginController {
 }
