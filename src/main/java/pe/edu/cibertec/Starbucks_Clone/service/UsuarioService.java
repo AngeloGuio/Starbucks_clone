@@ -10,6 +10,7 @@ import pe.edu.cibertec.Starbucks_Clone.model.bd.Usuario;
 import pe.edu.cibertec.Starbucks_Clone.repository.EstadoRepository;
 import pe.edu.cibertec.Starbucks_Clone.repository.RolRepository;
 import pe.edu.cibertec.Starbucks_Clone.repository.UsuarioRepository;
+import pe.edu.cibertec.Starbucks_Clone.util.RandomPassword;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +23,7 @@ public class UsuarioService implements IUsuarioService{
     private UsuarioRepository usuarioRepository;
     private EstadoRepository estadoRepository;
     private RolRepository rolRepository;
+    private RandomPassword randomPassword;
     private BCryptPasswordEncoder bCryptPasswordEncoder=
             new BCryptPasswordEncoder();
 
@@ -38,6 +40,11 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    public Usuario buscarUsuairoXNomnreUsuario(String nomusuario) {
+        return null;
+    }
+
+    @Override
     public Usuario agregarUsuario(Usuario usuario) {
         Estado estadoActivo = estadoRepository.findById(true)
                 .orElseThrow(() -> new ResourceNotFoundException("Estado ACTIVO no encontrado"));
@@ -47,9 +54,22 @@ public class UsuarioService implements IUsuarioService{
                 .orElseThrow(() -> new ResourceNotFoundException("Rol por defecto no encontrado"));
 
         usuario.setRoles(Collections.singleton(rolPorDefecto));
-        usuario.setPassword(bCryptPasswordEncoder.encode(
-                usuario.getPassword()));
+        // Generamos una contraseña aleatoria si el usuario no proporciona una
+        if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
+            String generatedPassword = randomPassword.generar(6); // Ejemplo de longitud 6
+            usuario.setPassword(bCryptPasswordEncoder.encode(generatedPassword));
+        } else {
+            usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        }
         return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public void actualizarUsaurio(Usuario usuario) {
+        usuarioRepository.actualizarUsuario(
+                usuario.getNombres(),usuario.getApellidos(),
+                usuario.getEstado().getCodestado(), usuario.getIdusuario()
+        );
     }
 
     @Override
@@ -62,7 +82,7 @@ public class UsuarioService implements IUsuarioService{
         usuario.setApellidos(usuarioActualizado.getApellidos());
         usuario.setDni(usuarioActualizado.getDni());
         usuario.setTelefono(usuarioActualizado.getTelefono());
-        usuario.setDireccion(usuarioActualizado.getDireccion());
+
 
         // Actualizar el estado si es necesario
         if (usuarioActualizado.getEstado() != null) {
