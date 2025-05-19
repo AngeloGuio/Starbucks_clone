@@ -2,6 +2,7 @@ package pe.edu.cibertec.Starbucks_Clone.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pe.edu.cibertec.Starbucks_Clone.exception.ResourceNotFoundException;
 import pe.edu.cibertec.Starbucks_Clone.model.bd.TipoProducto;
 import pe.edu.cibertec.Starbucks_Clone.repository.TipoProductoRepository;
 import pe.edu.cibertec.Starbucks_Clone.service.ITipoProductoService;
@@ -31,5 +32,14 @@ public class TipoProductoService implements ITipoProductoService {
             return Optional.empty();
         }
         return tipoProducto;
+    }
+
+    @Override
+    public TipoProducto actualizarTipoProducto(Integer id, TipoProducto tipoProductoActualizado) {
+        TipoProducto tipoProducto = tipoProductoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El tipo producto con ID " + id + " no existe"));
+
+        tipoProducto.setNombre(tipoProductoActualizado.getNombre());
+        return tipoProductoRepository.save(tipoProducto);
     }
 }

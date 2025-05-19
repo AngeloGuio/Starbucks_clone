@@ -9,4 +9,5 @@ public interface ITipoProductoService {
     List<TipoProducto> listarTipoProductos();
     TipoProducto guardarTipoProducto(TipoProducto tipoProducto);
     Optional <TipoProducto> obtenerTipoProductoxId(Integer id);
+    TipoProducto actualizarTipoProducto(Integer id, TipoProducto tipoProductoActualizado);
 }
