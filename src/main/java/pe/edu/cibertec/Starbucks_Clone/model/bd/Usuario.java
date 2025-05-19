@@ -32,6 +32,8 @@ public class Usuario {
     private String dni;
     @Column(name = "telefono")
     private String telefono;
+    @Column(name = "direccion")
+    private String direccion;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codestado")

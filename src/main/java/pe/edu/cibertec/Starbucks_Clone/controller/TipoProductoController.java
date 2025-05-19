@@ -1,4 +1,4 @@
 package pe.edu.cibertec.Starbucks_Clone.controller;
 
-public class LoginController {
+public class TipoProductoController {
 }

@@ -16,12 +16,14 @@ public class Cliente {
     private String nombres;
     @Column(name = "apellidos")
     private String apellidos;
-    @Column(name = "telefono")
-    private String telefono;
-    @Column(name = "direccion")
-    private String direccion;
-    @Column(name = "correo")
-    private String correo;
     @Column(name = "dni")
     private String dni;
+    @Column(name = "telefono")
+    private String telefono;
+    @Column(name = "correo")
+    private String correo;
+    @Column(name = "direccion")
+    private String direccion;
+
+
 }

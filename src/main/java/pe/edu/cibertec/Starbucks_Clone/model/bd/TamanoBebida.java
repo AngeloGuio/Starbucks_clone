@@ -2,20 +2,18 @@ package pe.edu.cibertec.Starbucks_Clone.model.bd;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "tipoproducto")
-public class TipoProducto {
+@Table(name = "tamanobebida")
+public class TamanoBebida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer idtipoproducto;
-
+    private Integer idtamanobebida;
     @Column(name = "nombre")
-    private  String nombre;
-
+    private String nombre;
+    @Column(name = "volumen_ml")
+    private String volumen_ml;
 }

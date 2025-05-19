@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 
     @Query(value = "UPDATE usuario SET nombres=:nombres, apellidos=:apellidos," +
-            "activo=:activo where idusuario=:idusario", nativeQuery = true)
+            "activo=:activo where idusuario=:idusuario", nativeQuery = true)
     void actualizarUsuario(@Param("nombres") String nombres,
                            @Param("apellidos") String apellidos,
                            @Param("activo") Boolean activo,
