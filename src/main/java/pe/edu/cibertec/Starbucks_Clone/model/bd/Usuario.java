@@ -34,7 +34,6 @@ public class Usuario {
     private String telefono;
     @Column(name = "direccion")
     private String direccion;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codestado")
     private Estado estado;

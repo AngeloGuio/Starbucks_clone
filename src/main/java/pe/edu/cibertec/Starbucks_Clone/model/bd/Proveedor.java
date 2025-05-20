@@ -2,8 +2,11 @@ package pe.edu.cibertec.Starbucks_Clone.model.bd;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "proveedor")
 public class Proveedor {
